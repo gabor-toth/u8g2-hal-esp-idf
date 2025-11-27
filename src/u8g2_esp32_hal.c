@@ -78,7 +78,7 @@ uint8_t u8g2_esp32_spi_byte_cb(u8x8_t* u8x8,
       dev_config.cs_ena_pretrans = 0;
       dev_config.clock_speed_hz = (int)u8x8->display_info->sck_clock_hz;
       dev_config.spics_io_num = u8g2_esp32_hal.bus.spi.cs;
-      dev_config.flags = 0;
+      dev_config.flags = ( u8x8->display_info->chip_enable_level ? SPI_DEVICE_POSITIVE_CS : 0 );
       dev_config.queue_size = 200;
       dev_config.pre_cb = NULL;
       dev_config.post_cb = NULL;
